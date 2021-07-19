@@ -1,0 +1,31 @@
+.gallery-header {
+    background-color: #292927;
+    padding: 0px 5px;
+}
+
+.image-gallery {
+    /* maximized for iPhone X */
+    padding-left: 23px;
+}
+
+.gallery-grid, .meme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 10px 5px;
+    margin-top: 170px;
+    justify-content: center;
+    align-content: center;
+}
+
+.gallery-image, .meme-image {
+    background-color: #000000;
+    height: 150px;
+}
+
+.img {
+    height: 150px;
+}
+
+.search-btn {
+    background-color: #000000;
+}

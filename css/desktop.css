@@ -1,0 +1,34 @@
+.main-nav {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-inline-end: 2rem;
+    position: unset;
+    height: auto;
+    border: none;
+    box-shadow: 0 ;
+    transform: inherit;
+    transition: transform .6s;
+}
+
+.btn-menu-burger, .fa-bars:before, .menu-logo {
+    display:none;
+}
+
+.meme-editor {
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: unset;
+    margin-top: 100px;
+}
+
+.btn, .label {
+    font-size: 1rem;;
+}
+
+.meme-canvas {
+    width: 500px;
+}
+
+.gallery-grid {
+    margin-top: 160px;
+}

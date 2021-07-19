@@ -1,0 +1,29 @@
+.meme-editor {
+    border: 5px solid rgb(14, 48, 80);
+    color: #999999;
+    justify-content: center;
+    margin-top: 165px;
+}
+
+.control-panel {
+    height:300;
+    width:300px;
+    background-color: #000000;
+    border: 2px solid rgb(14, 48, 80);
+}
+
+.control-btn {
+    background-color: #292927;
+    border:none;
+}
+
+.canvas-container {
+    background-color: rgb(0, 0, 0);
+}
+
+.fa-facebook-square:before {
+    color:#999999;
+}
+.fa-facebook-square:hover:before {
+    color:#1873eb;
+}
