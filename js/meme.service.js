@@ -133,7 +133,7 @@ const changeCurrLineIdx = () => {
     gMeme.selectedLineIdx++;
     if (gMeme.selectedLineIdx > gMeme.lines.length - 1) {
         gMeme.selectedLineIdx = 0;
-    };
+    }
     gMeme.lines[gMeme.selectedLineIdx].isFocused = true;
 
 };
@@ -167,15 +167,15 @@ const loadMemesFromStorage = () => {
             resizeCanvas(meme.width, meme.height);
             gCtx.drawImage(meme, 0, 0, gCanvas.width, gCanvas.height);
             drawText();
-        };
+        }
     });
     return savedMemes;
 };
 
 const searchImage = (keyword) => {
-    const res = gImgs.filter(function (img) {
+    const res = gImgs.filter(img => {
         return img.keywords.includes(keyword);
-    })
+    });
     return res;
 };
 
@@ -184,11 +184,11 @@ const getSavedMemes = () => {
         const loadedMemes = loadMemesFromStorage();
         if (!loadedMemes || loadedMemes.length === 0) {
             return;
-        };
+        }
         return loadedMemes;
     } catch (error) {
         console.log('something went wrong');
-    };
+    }
 };
 
 const getAboutDescription = () => {

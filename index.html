@@ -9,6 +9,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/yoav-code-surfer.png">
     <script src="https://kit.fontawesome.com/90ec31e69c.js" crossorigin="anonymous"></script>
     <title>memer</title>
+    <script src="js/storage.service.js" defer></script>
+    <script src="js/sharing.controller.js" defer></script>
+    <script src="js/meme.service.js" defer></script>
+    <script src="js/main.controller.js" defer></script>
 </head>
 
 <body onload=onInit()>
@@ -40,13 +44,11 @@
             </div>
         </div>
     </header>
-
     <main class="main-container">
         <section class="image-gallery">
             <div class="gallery-grid"></div>
             <div class="meme-grid"></div>
         </section>
-
         <section class="meme-editor flex flex-column-reverse align-center hidden">
             <div class="control-panel hidden">
                 <div class="editor-container">
@@ -54,7 +56,6 @@
                         <input type="text" name="text-line" placeholder="your line"
                             oninput="onEditText(this.value)"></input>
                     </label>
-
                     <button data-size="2" onclick="onIncreaseText(+this.dataset.size)">A+</button>
                     <button data-size="-2" onclick="onDecreaseText(+this.dataset.size)">A-</button>
                     <button data-line="-10" onclick="onMoveLineUp(+this.dataset.line)">⬆</button>
@@ -65,7 +66,6 @@
                     <button onclick="onSwitchLine()">⮃</button>
                     <button onclick="onRemoveLine()">x</button>
                 </div>
-
                 <div class="share-container flex justify-content">
                     <button class="control-btn btn" onclick="onSaveMeme()">save</button>
                     <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
@@ -88,13 +88,7 @@
             <button class="control-btn btn" onclick="onCloseAboutModal()">
                 close</button>
         </div>
-
     </main>
-
-    <script src="js/storage.service.js"></script>
-    <script src="js/sharing.controller.js"></script>
-    <script src="js/meme.service.js"></script>
-    <script src="js/main.controller.js"></script>
 </body>
 
 </html>

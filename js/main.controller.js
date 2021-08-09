@@ -50,7 +50,7 @@ const renderGallery = () => {
     const imgs = !gIsSearch ? getImgs() : searchImage(gKeyword);
     for (let i = 0; i < imgs.length; i++) {
         strHTML += `<img class="img gallery-image" src="${imgs[i].url}" onclick="onRenderCanvas(${imgs[i].id})">`
-    };
+    }
     galleryElement.innerHTML = strHTML;
 };
 
@@ -60,7 +60,7 @@ const renderMemes = (loadedMemes) => {
     let strHTML = ``;
     for (let i = 0; i < loadedMemes.length; i++) {
         strHTML += `<img class="img gallery-image" onclick="onRenderCanvas(${loadedMemes[i].id})" src="${(loadedMemes[i].src)}"/>`
-    };
+    }
     memeElement.innerHTML = strHTML;
 };
 
@@ -133,7 +133,7 @@ const renderMemeCanvas = () => {
         resizeCanvas(img.width, img.height)
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
         drawText();
-    };
+    }
 };
 
 const resizeCanvas = (width, height) => {
@@ -188,13 +188,13 @@ searchInput.addEventListener('keyup', (ev) => {
     if (ev.keyCode === 13) {
         ev.preventDefault();
         onSearchImage();
-    };
+    }
 });
 
 const onDisplayImageGalery = () => {
     if (gIsBurgerMenu) {
         onToggleMenu();
-    };
+    }
     gIsSearch = false;
     hideControlPanel();
     hideGalleries();
@@ -206,7 +206,7 @@ const onDisplayImageGalery = () => {
 const onLoadMemes = () => {
     if (gIsBurgerMenu) {
         onToggleMenu();
-    };
+    }
     hideControlPanel();
     hideGalleries();
     showMemesGallery();
@@ -315,8 +315,8 @@ const commonSearcedKeywords = (query) => {
         } else {
             elKeyword.style.fontSize = 'larger';
             getPopularKeywords().push(query);
-        };
+        }
     } else {
         getgKeyWords().push(query);
-    };
+    }
 };
