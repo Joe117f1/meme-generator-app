@@ -2,93 +2,92 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/yoav-code-surfer.png">
-    <script src="https://kit.fontawesome.com/90ec31e69c.js" crossorigin="anonymous"></script>
-    <title>memer</title>
-    <script src="js/storage.service.js" defer></script>
-    <script src="js/sharing.controller.js" defer></script>
-    <script src="js/meme.service.js" defer></script>
-    <script src="js/main.controller.js" defer></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/yoav-code-surfer.png">
+  <script src="https://kit.fontawesome.com/90ec31e69c.js" crossorigin="anonymous"></script>
+  <title>memer</title>
+  <script src="js/storage.service.js" defer></script>
+  <script src="js/sharing.controller.js" defer></script>
+  <script src="js/meme.service.js" defer></script>
+  <script src="js/main.controller.js" defer></script>
 </head>
 
 <body onload=onInit()>
-    <div class="screen-cover" onclick="onToggleMenu()"></div>
-    <header class="main-header fixed">
-        <div class="nav-container flex space-between align-center">
-            <div class="logo">memer!</div>
-            <div class="header-container flex">
-                <nav class="main-nav flex">
-                    <button class="menu-btn btn" onclick="onDisplayImageGalery()">Gallery</button>
-                    <button class="menu-btn btn" onclick="onLoadMemes()">Memes</button>
-                    <button class="menu-btn btn" onclick="onAbout()">About</button>
-                    <i class="menu-logo logo">memer!</i>
-                </nav>
-                <i class="btn-menu-burger fas fa-bars active" onclick="onBurgerBtnHandler()"></i>
-            </div>
+  <div class="screen-cover" onclick="onToggleMenu()"></div>
+  <header class="main-header fixed">
+    <div class="nav-container flex space-between align-center">
+      <div class="logo">memer!</div>
+      <div class="header-container flex">
+        <nav class="main-nav flex">
+          <button class="menu-btn btn" onclick="onDisplayImageGalery()">Gallery</button>
+          <button class="menu-btn btn" onclick="onLoadMemes()">Memes</button>
+          <button class="menu-btn btn" onclick="onAbout()">About</button>
+          <i class="menu-logo logo">memer!</i>
+        </nav>
+        <i class="btn-menu-burger fas fa-bars active" onclick="onBurgerBtnHandler()"></i>
+      </div>
+    </div>
+    <div class="gallery-header">
+      <label for="search"></label>
+      <input class="input-txt search" name="search" type="text" placeholder="insert keyword">
+      <button class="search-btn btn" onclick="onSearchImage()">Search</button>
+      <div class="keywords-bar flex">
+        <p class="kwrd-0 keyword">funny</p>
+        <p class="kwrd-1 keyword">cat</p>
+        <p class="kwrd-2 keyword">baby</p>
+        <p class="kwrd-3 keyword">serious</p>
+        <p class="kwrd-4 keyword">awkward</p>
+        <p class="kwrd-5 keyword">politics</p>
+      </div>
+    </div>
+  </header>
+  <main class="main-container">
+    <section class="image-gallery">
+      <div class="gallery-grid"></div>
+      <div class="meme-grid"></div>
+    </section>
+    <section class="meme-editor flex flex-column-reverse align-center hidden">
+      <div class="control-panel hidden">
+        <div class="editor-container">
+          <label class="label" for="text-line">write
+            <input type="text" name="text-line" placeholder="your line" oninput="onEditText(this.value)"></input>
+          </label>
+          <button data-size="2" onclick="onIncreaseText(+this.dataset.size)">A+</button>
+          <button data-size="-2" onclick="onDecreaseText(+this.dataset.size)">A-</button>
+          <button data-line="-10" onclick="onMoveLineUp(+this.dataset.line)">⬆</button>
+          <button data-line="10" onclick="onMoveLineDown(+this.dataset.line)">⬇</button>
+          <button class="color-btn"><input type="color" oninput="onChangeFill(this.value)">Fill</button>
+          <button class="color-btn"><input type="color" oninput="onChangeStroke(this.value)">Stroke</button>
+          <button onclick="onAddLine()">+</button>
+          <button onclick="onSwitchLine()">⮃</button>
+          <button onclick="onRemoveLine()">x</button>
         </div>
-        <div class="gallery-header">
-            <label for="search"></label>
-            <input class="input-txt search" name="search" type="text" placeholder="insert keyword">
-            <button class="search-btn btn" onclick="onSearchImage()">Search</button>
-            <div class="keywords-bar flex">
-                <p class="kwrd-0 keyword">funny</p>
-                <p class="kwrd-1 keyword">cat</p>
-                <p class="kwrd-2 keyword">baby</p>
-                <p class="kwrd-3 keyword">serious</p>
-                <p class="kwrd-4 keyword">awkward</p>
-                <p class="kwrd-5 keyword">politics</p>
-            </div>
+        <div class="share-container flex justify-content">
+          <button class="control-btn btn" onclick="onSaveMeme()">save</button>
+          <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+            <input name="img" id="imgData" type="hidden" />
+            <button class="control-btn btn" type="submit">share</button>
+            <a href="#" class="control-btn btn " onclick="onDownloadMeme(this)" download="my-img.jpg">Download
+            </a>
+          </form>
         </div>
-    </header>
-    <main class="main-container">
-        <section class="image-gallery">
-            <div class="gallery-grid"></div>
-            <div class="meme-grid"></div>
-        </section>
-        <section class="meme-editor flex flex-column-reverse align-center hidden">
-            <div class="control-panel hidden">
-                <div class="editor-container">
-                    <label class="label" for="text-line">write
-                        <input type="text" name="text-line" placeholder="your line"
-                            oninput="onEditText(this.value)"></input>
-                    </label>
-                    <button data-size="2" onclick="onIncreaseText(+this.dataset.size)">A+</button>
-                    <button data-size="-2" onclick="onDecreaseText(+this.dataset.size)">A-</button>
-                    <button data-line="-10" onclick="onMoveLineUp(+this.dataset.line)">⬆</button>
-                    <button data-line="10" onclick="onMoveLineDown(+this.dataset.line)">⬇</button>
-                    <button class="color-btn"><input type="color" oninput="onChangeFill(this.value)">Fill</button>
-                    <button class="color-btn"><input type="color" oninput="onChangeStroke(this.value)">Stroke</button>
-                    <button onclick="onAddLine()">+</button>
-                    <button onclick="onSwitchLine()">⮃</button>
-                    <button onclick="onRemoveLine()">x</button>
-                </div>
-                <div class="share-container flex justify-content">
-                    <button class="control-btn btn" onclick="onSaveMeme()">save</button>
-                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                        <input name="img" id="imgData" type="hidden" />
-                        <button class="control-btn btn" type="submit">share</button>
-                        <a href="#" class="control-btn btn " onclick="onDownloadMeme(this)"
-                            download="my-img.jpg">Download
-                        </a>
-                    </form>
-                </div>
-                <button class="control-btn btn" onclick="onGoBack()">⮌</button>
-            </div>
-            <div class="canvas-container hidden">
-                <canvas class="meme-canvas" height="500" width="500">
-                </canvas>
-            </div>
-        </section>
-        <div class="about-memer-modal" onclick="onCloseAboutModal()">
-            <p></p>
-            <button class="control-btn btn" onclick="onCloseAboutModal()">
-                close</button>
-        </div>
-    </main>
+        <button class="control-btn btn" onclick="onGoBack()">⮌</button>
+      </div>
+      <div class="canvas-container hidden">
+        <canvas class="meme-canvas" height="500" width="500">
+        </canvas>
+      </div>
+    </section>
+    <div class="about-memer-modal" onclick="onCloseAboutModal()">
+      <p></p>
+      <button class="control-btn btn" onclick="onCloseAboutModal()">
+        close
+      </button>
+    </div>
+  </main>
 </body>
 
 </html>
